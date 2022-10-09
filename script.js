@@ -1,19 +1,30 @@
-let size = prompt("How many pixels do you want?");
-if (size > 50) size = 50;
-console.log(size);
-
 const container = document.getElementById('container');
-const divs = Array(size*size);
-for (let i = 0; i < divs.length; i++) {
-  const temp = document.createElement('div');
 
-  temp.classList.add('cell');
-  let width = (container.offsetWidth / size)  + "px";
-  temp.style.width = width;
-  temp.style.height = width;
-  temp.addEventListener('mouseover', () => temp.style.backgroundColor = "black");
+function drawCanvas(size = prompt("What size canvas do you want?")) {
+  // clear canvas
+  const children = Array.from(container.childNodes);
+  for (let child of children) {
+    child.remove();
+  }
 
-  container.appendChild(temp);
-  divs[i] = temp;
+  if (size > 50) size = 50;
+  divs = Array(size*size);
+
+  for (let i = 0; i < divs.length; i++) {
+    const temp = document.createElement('div');
+    temp.classList.add('cell');
+    // NB use clientHeight instead of offSetHeight to exclude the border pixels
+    let width = ((container.clientHeight) / size)  + "px";
+    temp.style.width = width;
+    temp.style.height = width;
+    temp.addEventListener('mouseover', () => temp.style.backgroundColor = "black");
+  
+    container.appendChild(temp);
+    divs[i] = temp;
+  }
 }
-console.log(divs);
+
+const sizeBtn = document.getElementById("sizeBtn");
+sizeBtn.addEventListener('click', () => drawCanvas());
+
+drawCanvas(16);
