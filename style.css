@@ -1,7 +1,20 @@
+:root {
+  --grid-width: 600px;
+  --cell-gap: 20x;
+}
+
+body, input, textarea, button {
+  box-sizing: border-box;
+}
+
 .cell {
-  height: 100px;
-  width: 100px;
   background-color: honeydew;
-  border: 5px solid black;
-  padding: 5px;
+  flex: 1 1 1;
+}
+
+#container {
+  width: var(--grid-width);
+  height: var(--grid-width);
+  display: flex;
+  flex-wrap: wrap;
 }
