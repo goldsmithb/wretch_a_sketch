@@ -21,6 +21,10 @@ body {
   flex: 1 1 1;
 }
 
+btn.active {
+  color: red;
+}
+
 #container {
   width: var(--grid-size);
   height: var(--grid-size);
