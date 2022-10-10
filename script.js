@@ -4,9 +4,12 @@ const Mode = {
 }
 
 const container = document.getElementById('container');
+let currentSize = 16;
 let mode = Mode.BW;
 
 function drawCanvas(size = prompt("What size canvas do you want?")) {
+  // Update global variables
+  currentSize = size;
   // clear canvas
   const children = Array.from(container.childNodes);
   for (let child of children) {
@@ -38,8 +41,6 @@ function drawCanvas(size = prompt("What size canvas do you want?")) {
 function colorModeHandler(e) {
   let color = this.style.backgroundColor;
   this.style.backgroundColor
-  console.log(color);
-  if (color === "") console.log("equal");
   if (color === "white" || color === "") {
     color = `rgb(${Math.floor(Math.random() * 256)},
              ${Math.floor(Math.random() * 256)},
@@ -51,15 +52,20 @@ function colorModeHandler(e) {
                  ${rgb[2] - 25.5})`;
   }
   this.style.backgroundColor = color;
-  console.log(this);
 }
 
 const sizeBtn = document.getElementById("sizeBtn");
 const colorBtn = document.getElementById("colorBtn");
 sizeBtn.addEventListener('click', () => drawCanvas());
 colorBtn.addEventListener('click', () => {
-  mode = Mode.Color;
-  drawCanvas(); // need reference to size
+  if (mode === Mode.BW) {
+    mode = Mode.Color;
+    colorBtn.textContent = "Black and White Mode";
+  } else {
+    mode = Mode.BW;
+    colorBtn.textContent = "Color Mode";
+  }
+  drawCanvas(currentSize); // need reference to size
 });
 
-drawCanvas(16);
+drawCanvas(currentSize);
