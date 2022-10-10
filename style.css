@@ -11,6 +11,12 @@ header {
   text-align: center;
 }
 
+.spooky {
+  font-size: 18pt;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px red;
+}
+
 header h1 {
   font-size: 42pt;
   margin: 10px 0;
