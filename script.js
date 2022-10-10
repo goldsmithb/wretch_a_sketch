@@ -56,6 +56,7 @@ function colorModeHandler(e) {
 
 const sizeBtn = document.getElementById("sizeBtn");
 const colorBtn = document.getElementById("colorBtn");
+const resetBtn = document.getElementById("resetBtn");
 sizeBtn.addEventListener('click', () => drawCanvas());
 colorBtn.addEventListener('click', () => {
   if (mode === Mode.BW) {
@@ -67,5 +68,6 @@ colorBtn.addEventListener('click', () => {
   }
   drawCanvas(currentSize); // need reference to size
 });
+resetBtn.addEventListener('click', () => drawCanvas(currentSize));
 
 drawCanvas(currentSize);
